@@ -1,0 +1,12 @@
+type = theme
+name = Tailwind css
+description = A custom Backdrop CMS front-end theme powered by Tailwind CSS v3.
+backdrop = 1.x
+version = BACKDROP_VERSION
+
+; Add theme CSS files
+stylesheets[all][] = css/tailwindcss.css
+stylesheets[all][] = css/style.css
+
+scripts[] = js/script.js
+

@@ -1,0 +1,21 @@
+{
+  "name": "backdrop-tailwind-theme",
+  "version": "1.0.0",
+  "description": "A Tailwind CSS v3 base theme for Backdrop CMS",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.css --watch"
+  },
+  "keywords": [
+    "backdrop-cms",
+    "theme",
+    "tailwindcss"
+  ],
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.31",
+    "tailwindcss": "^3.4.19"
+  }
+}
