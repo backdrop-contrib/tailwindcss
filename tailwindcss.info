@@ -10,3 +10,5 @@ stylesheets[all][] = css/style.css
 
 scripts[] = js/script.js
 
+settings[tailwindcss_enabled] = true
+settings[toggle_dark_mode] = 0

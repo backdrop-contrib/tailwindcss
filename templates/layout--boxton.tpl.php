@@ -28,7 +28,7 @@
   </div>
 
 <?php if ($content['header']): ?>
-    <header class="l-header bg-gradient-to-b from-sky-100 via-slate-100 to-white text-gray-800 shadow-sm border-b border-gray-200 text-base" role="banner" aria-label="<?php print t('Site header'); ?>">
+    <header class="l-header bg-gradient-to-b from-sky-100 via-slate-100 to-white text-gray-800 dark:bg-gray-900 dark:bg-none dark:text-gray-100 shadow-sm border-b border-gray-200 text-base" role="banner" aria-label="<?php print t('Site header'); ?>">
       <div class="l-header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         <?php print $content['header']; ?>
       </div>

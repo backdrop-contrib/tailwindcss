@@ -18,7 +18,7 @@
           <?php endif; ?>
 
           <?php if ($site_name): ?>
-            <span class="text-3xl md:text-3xl font-bold tracking-tight text-gray-900 group-hover:text-indigo-600">
+            <span class="text-3xl md:text-3xl dark:text-white font-bold tracking-tight text-gray-900 group-hover:text-indigo-600">
               <?php print $site_name; ?>
             </span>
           <?php endif; ?>
@@ -33,10 +33,13 @@
     </div>
   <?php endif; ?>
 
-  <?php if ($menu): ?>
+  <?php if ($dark_mode_toggle or $menu): ?>
     <nav class="header-menu flex items-center justify-end gap-4 block ltr:ml-auto rtl:mr-auto">
       <?php print $menu; ?>
+      <?php print $dark_mode_toggle; ?>
     </nav>
   <?php endif; ?>
+
+
 
 </div>

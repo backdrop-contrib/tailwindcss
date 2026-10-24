@@ -12,7 +12,7 @@
  * - $content: The actual content of the block.
  */
 ?>
-<div class="bg-radial from-cyan-900 via-cyan-700 to-sky-800 <?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<div class="text-3xl p-6 md:px-[100px] md:py-[50px] bg-radial from-cyan-900 via-cyan-700 to-sky-800 <?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
   <div class="container">
     <?php print render($title_prefix); ?>
     <?php if ($title): ?>

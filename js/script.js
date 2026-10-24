@@ -55,4 +55,63 @@ $(document).ready(function() {
   Backdrop.featureDetect.flexbox();
 });
 
+/**
+ * تفعيل زر التبديل بين الوضع الفاتح والداكن.
+ */
+Backdrop.behaviors.darkModeToggle = {
+  attach: function(context, settings) {
+    // البحث عن الزر في السياق الحالي (يدعم AJAX)
+    var toggleBtn = document.getElementById('dark-mode-toggle');
+    
+    // التحقق من وجود الزر ولم يتم معالجته مسبقاً
+    if (!toggleBtn || toggleBtn.hasAttribute('data-dark-mode-processed')) {
+      return;
+    }
+    
+    // ✅ هذا هو الشرط الذي نتحدث عنه: إذا لم يوجد الزر، توقف فوراً
+    if (!toggleBtn || toggleBtn.hasAttribute('data-dark-mode-processed')) {
+      return; 
+    }
+    
+    // وضع علامة على الزر لمنع تكرار المعالجة
+    toggleBtn.setAttribute('data-dark-mode-processed', 'true');
+
+    var iconSun = document.getElementById('icon-sun');
+    var iconMoon = document.getElementById('icon-moon');
+    
+    // دالة لتحديث الأيقونات بناءً على الوضع
+    function updateIcons(isDark) {
+      if (isDark) {
+        if (iconSun) iconSun.classList.remove('hidden');
+        if (iconMoon) iconMoon.classList.add('hidden');
+      } else {
+        if (iconSun) iconSun.classList.add('hidden');
+        if (iconMoon) iconMoon.classList.remove('hidden');
+      }
+    }
+
+    // 1. التحقق من تفضيل الزائر المحفوظ أو إعدادات النظام
+    var userPref = localStorage.getItem('theme');
+    var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    var isDark = (userPref === 'dark') || (!userPref && systemPrefersDark);
+
+    // تطبيق الوضع الأولي
+    if (isDark) {
+      document.body.classList.add('dark');
+      updateIcons(true);
+    } else {
+      document.body.classList.remove('dark');
+      updateIcons(false);
+    }
+
+    // 2. تفعيل الزر عند النقر
+    toggleBtn.addEventListener('click', function() {
+      var currentlyDark = document.body.classList.toggle('dark');
+      localStorage.setItem('theme', currentlyDark ? 'dark' : 'light');
+      updateIcons(currentlyDark);
+    });
+  }
+};
+
 })(jQuery);

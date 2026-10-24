@@ -1,132 +1,866 @@
-html, body { height: 100% }
+/* ============================================================
+   1. التخطيط العام (Layout)
+   ============================================================ */
+
+html,
 body {
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 1rem;
-	line-height: 1.6;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+  height: 100%;
 }
-/* 2. أول عنصر داخل البودي (سواء كان moscone أو غيره) */
+
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
 body > div:first-child {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
-.l-wrapper {
-  flex-grow: 1; /* تتمدد لملء المساحة الفارغة */
-  display: flex;
-  flex-direction: column;
-}
+
+.l-wrapper,
 .layout--moscone-flipped {
-  flex-grow: 1; /* تتمدد لملء المساحة الفارغة */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 /* ============================================================
-   1. الشاشات الصغيرة (Mobile ≤ 767px)
+   2. الهيدر (Header)
    ============================================================ */
-@media (max-width: 767px) {
 
-  /* ضروري لتموضع القائمة المطلقة تحت الزر */
-  .block-content,
-  .l-header {
-    position: relative !important;
+header.l-header {
+  position: relative;
+  display: block;
+  clear: both;
+  height: auto;
+  min-height: fit-content;
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+}
+
+.l-header-inner {
+  position: relative;
+  display: block;
+  clear: both;
+  height: auto;
+  min-height: fit-content;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.l-header-inner::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .l-header-inner {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
+}
 
-  /* إخفاء الـ checkbox بصرياً (احتياط لو element-invisible غير محمّل) */
+/* ============================================================
+   3. القائمة (Menu) — عام
+   ============================================================ */
+
+header .header-menu ul,
+header ul.menu,
+.l-header ul.menu,
+.l-header-menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  float: none;
+}
+
+ul.menu-dropdown {
+  justify-content: flex-start;
+  position: relative;
+}
+
+[dir="rtl"] .header-menu ul.menu-dropdown,
+[dir="rtl"] ul.menu-dropdown {
+  direction: rtl;
+}
+
+header .header-menu ul li,
+header ul.menu li,
+.l-header ul.menu li,
+.l-header-menu ul li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* إضافة الوضع الداكن لقائمة الهيدر */
+.dark header .header-menu ul li a,
+.dark header ul.menu li a, 
+.dark .l-header ul.menu li a, 
+.dark .l-header-menu ul li a {
+	color: #ffffff; /* أو أي لون تريده */
+}
+
+/* إذا أردت تغيير لون الخلفية عند التمرير (Hover) */
+.dark header .header-menu ul li a:hover {
+    background-color: #374151; /* لون خلفية مناسب للوضع الداكن */
+}
+/* ---------- روابط القائمة — الحالة العادية ---------- */
+header .header-menu ul li a,
+header ul.menu li a,
+.l-header ul.menu li a,
+.l-header-menu ul li a {
+  display: inline-block;
+  padding: 0.575rem 0.875rem 0.775rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: normal;
+  color: #374151;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  /* انتقال سلس للون والخلفية فقط — بدون padding */
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+/* ---------- روابط القائمة — hover / focus / active ---------- */
+header .header-menu ul li a:hover,
+header .header-menu ul li a:focus,
+header .header-menu ul li a:active,
+header ul.menu li a:hover,
+header ul.menu li a:focus,
+header ul.menu li a:active,
+.l-header ul.menu li a:hover,
+.l-header ul.menu li a:focus,
+.l-header ul.menu li a:active,
+.l-header-menu ul li a:hover,
+.l-header-menu ul li a:focus,
+.l-header-menu ul li a:active {
+  color: #4f46e5;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.575rem 0.875rem 0.775rem;  /* نفس القيمة — لن يتغير */
+  display: inline-block;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+}
+
+/* ---------- الرابط النشط (الصفحة الحالية) ---------- */
+header ul.menu li a.active,
+.l-header ul.menu li a.active,
+header .header-menu ul li a.active,
+.l-header-menu ul li a.active {
+  color: #ffffff;
+  background-color: #085c86;
+}
+
+/* ثبات الرابط النشط عند hover */
+header ul.menu li a.active:hover,
+.l-header ul.menu li a.active:hover,
+header .header-menu ul li a.active:hover,
+.l-header-menu ul li a.active:hover {
+  color: #ffffff;
+  background-color: #085c86;
+}
+
+/* ---------- إزاحات القائمة ---------- */
+header .header-menu,
+.l-header ul.menu-dropdown {
+  margin-left: 0.5rem;
+}
+
+.block-system-main-menu {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .block-system-main-menu {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ============================================================
+   4. القائمة — موبايل (≤ 767px)
+   ============================================================ */
+
+@media (max-width: 767px) {
+  /* إخفاء checkbox */
   .menu-toggle-state {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    clip: rect(0 0 0 0) !important;
-    white-space: nowrap !important;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   /* القائمة مخفية افتراضياً */
   ul.menu-dropdown.menu {
-    display: none !important;
+    display: none;
   }
 
-  /* ✅ السبب الأهم: الإظهار مرتبط بحالة الـ checkbox وليس فقط js-toggled */
-  #menu-toggle-state:checked ~ ul.menu-dropdown.menu,
+  /* إظهار عند :checked (بدون JS) */
+  #menu-toggle-state:checked ~ ul.menu-dropdown.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    z-index: 50;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li {
+    display: block;
+    width: 100%;
+    float: none;
+    margin: 0;
+    padding: 0 0 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li a {
+    display: block;
+    width: 100%;
+    color: #7e858f;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+
+  /* دعم js-toggled أيضاً (إذا Core يستخدمه) */
   ul.menu-dropdown.menu.js-toggled {
-    display: flex !important;
-    flex-direction: column !important;
-    background-color: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-    border-radius: 1rem !important;
-    padding: 1.25rem !important;
-    margin-top: 0.75rem !important;
-    margin-bottom: 0.75rem !important;
-    z-index: 50 !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    z-index: 50;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
   }
 
-  /* عناصر القائمة عمودية بعرض كامل */
-  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li,
   ul.menu-dropdown.menu.js-toggled li {
-    display: block !important;
-    width: 100% !important;
-    float: none !important;
-    margin: 0 !important;
-    padding: 0 0 0.5rem 0 !important;
-    border-bottom: 1px solid #f1f5f9 !important;
+    display: block;
+    width: 100%;
+    float: none;
+    margin: 0;
+    padding: 0 0 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
   }
 
-  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li:last-child,
   ul.menu-dropdown.menu.js-toggled li:last-child {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
-  #menu-toggle-state:checked ~ ul.menu-dropdown.menu li a,
   ul.menu-dropdown.menu.js-toggled li a {
-    display: block !important;
-    width: 100% !important;
-    color: #334155 !important;
-    font-weight: 500 !important;
-    padding: 0.5rem 0.75rem !important;
-    text-decoration: none !important;
+    display: block;
+    width: 100%;
+    color: #334155;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
   }
 }
 
 /* ============================================================
-   2. الشاشات الكبيرة (Desktop ≥ 768px)
+   5. القائمة — ديسكتوب (≥ 768px)
    ============================================================ */
-@media (min-width: 768px) {
 
+@media (min-width: 768px) {
   .l-header ul.menu-dropdown {
-    display: flex !important;
-    flex-direction: row !important;       /* ✅ بديل @apply flex-row */
-    align-items: center !important;       /* ✅ بديل @apply items-center */
-    gap: 1.5rem !important;               /* ✅ بديل space-x-6 */
-    position: static !important;          /* إلغاء أي absolute متبقٍ */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    position: static;
   }
 
   .l-header ul.menu-dropdown > li {
-    display: inline-flex !important;
-    align-items: center !important;
-    width: auto !important;               /* مهم: لا تورّث width:100% من قواعد صغيرة */
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;                 /* إلغاء border-bottom من قواعد الموبايل */
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
-  /* space-x-reverse في RTL = مسافة من جهة البداية */
   .l-header ul.menu-dropdown > li + li {
-    margin-inline-start: 1.5rem !important;
+    margin-inline-start: 1.5rem;
   }
 
-  /* إخفاء زر القائمة على الشاشات الكبيرة */
   .menu-toggle-button,
   .menu-toggle-state {
-    display: none !important;
+    display: none;
+  }
+}
+
+/* ============================================================
+   6. الهيرو (Hero)
+   ============================================================ */
+
+.block-hero {
+  background-color: transparent;
+  background-image: linear-gradient(to right, #164e63, #0e7490, #075985);
+  color: #ffffff;
+  border-radius: 0.75rem;
+}
+
+/* ============================================================
+   7. كروت Views (Promoted Cards)
+   ============================================================ */
+.dark .views-view-grid .views-row,
+.dark .views-view-grid .views-grid-box {
+    background-color: #1f2937 !important; /* لون gray-800 */
+    border-color: #374151 !important; /* حدود رمادية داكنة */
+    color: #f3f4f6 !important; /* لون النص gray-100 */
+}
+.views-view-grid .views-row,
+.views-view-grid .views-grid-box {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease-in-out;
+}
+
+.views-view-grid .views-row:hover,
+.views-view-grid .views-grid-box:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e1;
+}
+.dark .views-field-field-image img,{
+      opacity: 0.8;
+}
+.dark .block-views-promoted-cards-block h2 {
+  color: #f3f4f6; /* لون النص في الوضع الداكن */
+}
+.block-views-promoted-cards-block h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #111827;
+}
+
+@media (min-width: 768px) {
+  .block-views-promoted-cards-block h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.dark .block-views-promoted-cards-block .views-field-body {
+  color: #d1d5db; /* لون النص في الوضع الداكن */
+}
+.block-views-promoted-cards-block .views-field-body {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  color: #374151;
+}
+
+@media (min-width: 768px) {
+  .block-views-promoted-cards-block .views-field-body {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* ---------- 8.1 الحاضنة العامة للـ Teaser ---------- */
+.dark .block-views-promoted-block article,
+.dark article.view-mode-teaser {
+  background-color: #1f2937; /* لون gray-800 */
+  border-color: #374151; /* حدود رمادية داكنة */
+  color: #f3f4f6; /* لون النص gray-100 */
+}
+
+.block-views-promoted-block article,
+article.view-mode-teaser {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 200ms ease-in-out, border-color 200ms ease-in-out;
+}
+
+article.view-mode-teaser:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e1;
+}
+
+/* ---------- 8.2 عنوان المقال داخل الـ Teaser ---------- */
+article.view-mode-teaser h2 {
+  margin: 0 0 0.75rem 0;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.dark article.view-mode-teaser h2 a {
+  color: #d3e3eb; /* لون النص في الوضع الداكن */
+}
+article.view-mode-teaser h2 a {
+  display: block;
+  color: #0e7490;
+  text-decoration: none;
+  transition: color 150ms ease-in-out;
+}
+
+.dark article.view-mode-teaser h2 a:hover {
+  color: #7dd3fc; /* لون النص عند hover في الوضع الداكن */
+}
+article.view-mode-teaser h2 a:hover {
+  color: #4e5f83 ;
+}
+
+@media (min-width: 768px) {
+  article.view-mode-teaser h2,
+  article.view-mode-teaser h2 a {
+    font-size: 1.875rem;
+    line-height: 1.3;
+  }
+}
+
+/* ---------- 8.3 التاريخ واسم الكاتب (Submitted) ---------- */
+article.view-mode-teaser footer .submitted,
+article.view-mode-teaser p.submitted,
+article.view-mode-teaser .submitted {
+  margin: 0 0 0.75rem 0;
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* ---------- 8.4 نص الموضوع (Body) ---------- */
+article.view-mode-teaser .field-name-body {
+  margin-bottom: 1rem;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: #475569;
+}
+
+.dark  article.view-mode-teaser .field-name-body .field-item p {
+  color: #d1d5db; /* لون النص في الوضع الداكن */
+}
+article.view-mode-teaser .field-name-body .field-item p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: #475569;
+}
+
+article.view-mode-teaser .field-name-body .field-item p:last-child {
+  margin-bottom: 0;
+}
+
+article.view-mode-teaser .field-name-body a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+article.view-mode-teaser .field-name-body a:hover {
+  color: #1e40af;
+}
+
+/* ---------- 8.5 قائمة الروابط (Read more, Add new comment) ---------- */
+article.view-mode-teaser ul.links.inline {
+  margin: 0.5rem 0 0.25rem 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+article.view-mode-teaser ul.links.inline li {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+
+article.view-mode-teaser ul.links.inline a {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #ecfeff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #0e7490;
+  text-decoration: none;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+article.view-mode-teaser ul.links.inline a:hover {
+  background-color: #cffafe;
+  color: #164e63;
+}
+
+/* ---------- 8.6 صورة الـ Teaser (إن وجدت) ---------- */
+article.view-mode-teaser .field-name-field-image,
+article.view-mode-teaser .field-name-field-thumbnail {
+  margin-bottom: 1rem;
+}
+
+article.view-mode-teaser .field-name-field-image img,
+article.view-mode-teaser .field-name-field-thumbnail img {
+  border-radius: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- 8.7 تجاوزات Core محتملة ---------- */
+article.view-mode-teaser.node {
+  float: none;
+  width: auto;
+}
+
+article.view-mode-teaser {
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* ============================================================
+   9. الفوتر (Footer)
+   ============================================================ */
+.dark footer.l-footer {
+  background-color: #0f172a; /* لون الخلفية في الوضع الداكن */
+  color: #cbd5e1; /* لون النص في الوضع الداكن */
+  border-top: 1px solid #1e293b; /* لون الحدود في الوضع الداكن */
+}
+footer.l-footer {
+  background-color: #083c56;
+  color: #94a3b8;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #0e5275;
+  position: relative;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  footer.l-footer {
+    margin-top: 3rem;
+    padding: 3rem 1rem;
+  }
+}
+
+footer.l-footer .l-footer-inner {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  footer.l-footer .l-footer-inner {
+    flex-direction: row;
+  }
+}
+
+/* الشعار */
+.drop-lounging {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.drop-lounging::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: none;
+  margin: 0;
+  padding: 0;
+  mask-image: url("../images/Drop_lounging.svg");
+  -webkit-mask-image: url("../images/Drop_lounging.svg");
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  background-color: #38bdf8;
+}
+
+footer.l-footer .block-system-powered-by {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+footer.l-footer .block-system-powered-by a {
+  color: #38bdf8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+footer.l-footer .block-system-powered-by a:hover {
+  color: #7dd3fc;
+}
+
+/* ============================================================
+   10. عنوان الصفحة والتبويبات
+   ============================================================ */
+.dark .page-title {
+  color: #f3f4f6; /* لون النص في الوضع الداكن */
+}
+.page-title {
+  margin: 1.5rem;
+  margin-inline-start: 1rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.tabs {
+  margin: 1.5rem;
+  margin-inline-start: 1rem;
+}
+
+.tabs ul.primary {
+  border-bottom: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tabs ul.primary li {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs ul.primary li a {
+  border-radius: 0.375rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #374151;
+}
+
+.tabs ul.primary li a.active {
+  background-color: #085c86;
+  color: #ffffff;
+}
+
+/* ============================================================
+   11. محتوى العقدة الكامل (Node Full)
+   ============================================================ */
+
+.node .content {
+  margin-bottom: 2rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field-label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.dark .field-name-body .field-item p {
+  color: #d1d5db; /* لون النص في الوضع الداكن */
+}
+.field-name-body .field-item p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: #374151;
+}
+
+.field-name-body .field-item p:last-child {
+  margin-bottom: 0;
+}
+
+.field-name-body a {
+  color: #2563eb;
+  transition: color 200ms;
+}
+
+.field-name-body a:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+.field-name-body ul {
+  margin-bottom: 1rem;
+  list-style-position: inside;
+  list-style-type: disc;
+  color: #374151;
+}
+
+.field-name-body ul li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.field-name-body ol {
+  margin-bottom: 1rem;
+  list-style-position: inside;
+  list-style-type: decimal;
+  color: #374151;
+}
+
+.field-name-body ol li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.field-name-body blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-right: 4px solid #3b82f6;
+  background-color: #f9fafb;
+  padding: 0.5rem 1rem 0.5rem 0;
+  font-style: italic;
+  color: #4b5563;
+}
+
+.dark article.view-mode-full footer {
+  color: #cbd5e1; /* لون النص في الوضع الداكن */
+}
+article.view-mode-full footer {
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   12. التعليقات (Comments)
+   ============================================================ */
+
+#comment-form input[type="submit"],
+#comment-form #edit-preview {
+  background-color: #085c86;
+  color: #ffffff;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  border: none;
+  cursor: pointer;
+}
+
+#comment-form input[type="submit"]:hover,
+#comment-form #edit-preview:hover {
+  background-color: #0a6fa3;
+}
+
+#comment-form #edit-cancel {
+  background-color: #085c86;
+  color: #ffffff;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#comment-form #edit-cancel:hover {
+  background-color: #0a6fa3;
+  color: #ffffff;
+}
+
+/* ============================================================
+   14. طباعة (Print)
+   ============================================================ */
+
+@media print {
+  .l-header,
+  footer.l-footer,
+  .tabs,
+  #comment-form {
+    display: none;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
   }
 }
