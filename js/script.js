@@ -43,7 +43,7 @@ Backdrop.featureDetect.backgroundBlendMode = function() {
       return true;
     }
     else {
-      $body.addClass('no-background-blend-mode');
+      $('body').addClass('no-background-blend-mode');
       $testElement.remove();
       return false;
     }
@@ -56,30 +56,30 @@ $(document).ready(function() {
 });
 
 /**
- * تفعيل زر التبديل بين الوضع الفاتح والداكن.
+ * Activate light/dark mode toggle button.
  */
 Backdrop.behaviors.darkModeToggle = {
   attach: function(context, settings) {
-    // البحث عن الزر في السياق الحالي (يدعم AJAX)
+    // Search for the button in the current context (supports AJAX)
     var toggleBtn = document.getElementById('dark-mode-toggle');
     
-    // التحقق من وجود الزر ولم يتم معالجته مسبقاً
+    // Check if button exists and hasn't been processed yet
     if (!toggleBtn || toggleBtn.hasAttribute('data-dark-mode-processed')) {
       return;
     }
     
-    // ✅ هذا هو الشرط الذي نتحدث عنه: إذا لم يوجد الزر، توقف فوراً
+    // ✅ This is the condition: if button doesn't exist, stop immediately
     if (!toggleBtn || toggleBtn.hasAttribute('data-dark-mode-processed')) {
       return; 
     }
     
-    // وضع علامة على الزر لمنع تكرار المعالجة
+    // Mark the button to prevent duplicate processing
     toggleBtn.setAttribute('data-dark-mode-processed', 'true');
 
     var iconSun = document.getElementById('icon-sun');
     var iconMoon = document.getElementById('icon-moon');
     
-    // دالة لتحديث الأيقونات بناءً على الوضع
+    // Function to update icons based on mode
     function updateIcons(isDark) {
       if (isDark) {
         if (iconSun) iconSun.classList.remove('hidden');
@@ -90,13 +90,13 @@ Backdrop.behaviors.darkModeToggle = {
       }
     }
 
-    // 1. التحقق من تفضيل الزائر المحفوظ أو إعدادات النظام
+    // 1. Check saved visitor preference or system settings
     var userPref = localStorage.getItem('theme');
     var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     var isDark = (userPref === 'dark') || (!userPref && systemPrefersDark);
 
-    // تطبيق الوضع الأولي
+    // Apply initial mode
     if (isDark) {
       document.body.classList.add('dark');
       updateIcons(true);
@@ -105,7 +105,7 @@ Backdrop.behaviors.darkModeToggle = {
       updateIcons(false);
     }
 
-    // 2. تفعيل الزر عند النقر
+    // 2. Activate button on click
     toggleBtn.addEventListener('click', function() {
       var currentlyDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', currentlyDark ? 'dark' : 'light');

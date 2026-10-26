@@ -4,8 +4,8 @@
   "description": "A Tailwind CSS v3 base theme for Backdrop CMS",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.css --minify",
-    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.css --watch"
+    "build": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.min.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.min.css --watch"
   },
   "keywords": [
     "backdrop-cms",

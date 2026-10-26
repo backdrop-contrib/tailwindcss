@@ -1,5 +1,5 @@
 /* ============================================================
-   1. التخطيط العام (Layout)
+   1. General Layout
    ============================================================ */
 
 html,
@@ -31,34 +31,8 @@ body > div:first-child {
 }
 
 /* ============================================================
-   2. الهيدر (Header)
+   2. Header
    ============================================================ */
-
-header.l-header {
-  position: relative;
-  display: block;
-  clear: both;
-  height: auto;
-  min-height: fit-content;
-  margin-bottom: 1.5rem;
-  background-color: transparent;
-}
-
-.l-header-inner {
-  position: relative;
-  display: block;
-  clear: both;
-  height: auto;
-  min-height: fit-content;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.l-header-inner::after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 @media (min-width: 768px) {
   .l-header-inner {
@@ -68,7 +42,7 @@ header.l-header {
 }
 
 /* ============================================================
-   3. القائمة (Menu) — عام
+   3. Menu — General
    ============================================================ */
 
 header .header-menu ul,
@@ -106,19 +80,21 @@ header ul.menu li,
   padding: 0;
   position: relative;
 }
-/* إضافة الوضع الداكن لقائمة الهيدر */
+
+/* Add dark mode to the header menu */
 .dark header .header-menu ul li a,
 .dark header ul.menu li a, 
 .dark .l-header ul.menu li a, 
 .dark .l-header-menu ul li a {
-	color: #ffffff; /* أو أي لون تريده */
+	color: #ffffff;
 }
 
-/* إذا أردت تغيير لون الخلفية عند التمرير (Hover) */
+/* If you want to change the background color on hover */
 .dark header .header-menu ul li a:hover {
-    background-color: #374151; /* لون خلفية مناسب للوضع الداكن */
+    background-color: #374151; /* Suitable background color for dark mode */
 }
-/* ---------- روابط القائمة — الحالة العادية ---------- */
+
+/* ---------- Menu Links — Normal State ---------- */
 header .header-menu ul li a,
 header ul.menu li a,
 .l-header ul.menu li a,
@@ -131,11 +107,11 @@ header ul.menu li a,
   color: #374151;
   border-radius: 0.375rem;
   text-decoration: none;
-  /* انتقال سلس للون والخلفية فقط — بدون padding */
+  /* Smooth transition for color and background only — without padding */
   transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
 }
 
-/* ---------- روابط القائمة — hover / focus / active ---------- */
+/* ---------- Menu Links — hover / focus / active ---------- */
 header .header-menu ul li a:hover,
 header .header-menu ul li a:focus,
 header .header-menu ul li a:active,
@@ -150,14 +126,14 @@ header ul.menu li a:active,
 .l-header-menu ul li a:active {
   color: #4f46e5;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.575rem 0.875rem 0.775rem;  /* نفس القيمة — لن يتغير */
+  padding: 0.575rem 0.875rem 0.775rem;  /* Same value — will not change */
   display: inline-block;
   font-weight: 600;
   line-height: normal;
   text-decoration: none;
 }
 
-/* ---------- الرابط النشط (الصفحة الحالية) ---------- */
+/* ---------- Active Link (Current Page) ---------- */
 header ul.menu li a.active,
 .l-header ul.menu li a.active,
 header .header-menu ul li a.active,
@@ -166,7 +142,7 @@ header .header-menu ul li a.active,
   background-color: #085c86;
 }
 
-/* ثبات الرابط النشط عند hover */
+/* Keep active link steady on hover */
 header ul.menu li a.active:hover,
 .l-header ul.menu li a.active:hover,
 header .header-menu ul li a.active:hover,
@@ -175,11 +151,7 @@ header .header-menu ul li a.active:hover,
   background-color: #085c86;
 }
 
-/* ---------- إزاحات القائمة ---------- */
-header .header-menu,
-.l-header ul.menu-dropdown {
-  margin-left: 0.5rem;
-}
+/* ---------- Menu Offsets ---------- */
 
 .block-system-main-menu {
   padding-left: 1.5rem;
@@ -194,11 +166,11 @@ header .header-menu,
 }
 
 /* ============================================================
-   4. القائمة — موبايل (≤ 767px)
+   4. Menu — Mobile (≤ 767px)
    ============================================================ */
 
 @media (max-width: 767px) {
-  /* إخفاء checkbox */
+  /* Hide checkbox */
   .menu-toggle-state {
     position: absolute;
     width: 1px;
@@ -208,12 +180,12 @@ header .header-menu,
     white-space: nowrap;
   }
 
-  /* القائمة مخفية افتراضياً */
+  /* Menu hidden by default */
   ul.menu-dropdown.menu {
     display: none;
   }
 
-  /* إظهار عند :checked (بدون JS) */
+  /* Show on :checked (without JS) */
   #menu-toggle-state:checked ~ ul.menu-dropdown.menu {
     display: flex;
     flex-direction: column;
@@ -254,7 +226,7 @@ header .header-menu,
     text-decoration: none;
   }
 
-  /* دعم js-toggled أيضاً (إذا Core يستخدمه) */
+  /* Support js-toggled as well (if Core uses it) */
   ul.menu-dropdown.menu.js-toggled {
     display: flex;
     flex-direction: column;
@@ -297,7 +269,7 @@ header .header-menu,
 }
 
 /* ============================================================
-   5. القائمة — ديسكتوب (≥ 768px)
+   5. Menu — Desktop (≥ 768px)
    ============================================================ */
 
 @media (min-width: 768px) {
@@ -329,7 +301,7 @@ header .header-menu,
 }
 
 /* ============================================================
-   6. الهيرو (Hero)
+   6. Hero
    ============================================================ */
 
 .block-hero {
@@ -340,13 +312,13 @@ header .header-menu,
 }
 
 /* ============================================================
-   7. كروت Views (Promoted Cards)
+   7. Views Cards (Promoted Cards)
    ============================================================ */
 .dark .views-view-grid .views-row,
 .dark .views-view-grid .views-grid-box {
-    background-color: #1f2937 !important; /* لون gray-800 */
-    border-color: #374151 !important; /* حدود رمادية داكنة */
-    color: #f3f4f6 !important; /* لون النص gray-100 */
+    background-color: #1f2937 !important; /* Gray-800 color */
+    border-color: #374151 !important; /* Dark gray borders */
+    color: #f3f4f6 !important; /* Text color gray-100 */
 }
 .views-view-grid .views-row,
 .views-view-grid .views-grid-box {
@@ -367,7 +339,7 @@ header .header-menu,
       opacity: 0.8;
 }
 .dark .block-views-promoted-cards-block h2 {
-  color: #f3f4f6; /* لون النص في الوضع الداكن */
+  color: #f3f4f6; /* Text color in dark mode */
 }
 .block-views-promoted-cards-block h2 {
   margin-top: 0.75rem;
@@ -386,7 +358,7 @@ header .header-menu,
   }
 }
 .dark .block-views-promoted-cards-block .views-field-body {
-  color: #d1d5db; /* لون النص في الوضع الداكن */
+  color: #d1d5db; /* Text color in dark mode */
 }
 .block-views-promoted-cards-block .views-field-body {
   margin-top: 0.5rem;
@@ -404,16 +376,18 @@ header .header-menu,
   }
 }
 
-/* ---------- 8.1 الحاضنة العامة للـ Teaser ---------- */
+/* ---------- 8.1 General Teaser Wrapper ---------- */
 .dark .block-views-promoted-block article,
-.dark article.view-mode-teaser {
-  background-color: #1f2937; /* لون gray-800 */
-  border-color: #374151; /* حدود رمادية داكنة */
-  color: #f3f4f6; /* لون النص gray-100 */
+.dark article.view-mode-teaser,
+.dark article.view-mode-full {
+  background-color: #1f2937; /* Gray-800 color */
+  border-color: #374151; /* Dark gray borders */
+  color: #f3f4f6; /* Text color gray-100 */
 }
 
 .block-views-promoted-block article,
-article.view-mode-teaser {
+article.view-mode-teaser,
+article.view-mode-full {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -426,12 +400,13 @@ article.view-mode-teaser {
   transition: box-shadow 200ms ease-in-out, border-color 200ms ease-in-out;
 }
 
-article.view-mode-teaser:hover {
+article.view-mode-teaser:hover,
+article.view-mode-full:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border-color: #cbd5e1;
 }
 
-/* ---------- 8.2 عنوان المقال داخل الـ Teaser ---------- */
+/* ---------- 8.2 Article Title Inside Teaser ---------- */
 article.view-mode-teaser h2 {
   margin: 0 0 0.75rem 0;
   padding: 0;
@@ -441,7 +416,7 @@ article.view-mode-teaser h2 {
 }
 
 .dark article.view-mode-teaser h2 a {
-  color: #d3e3eb; /* لون النص في الوضع الداكن */
+  color: #d3e3eb; /* Text color in dark mode */
 }
 article.view-mode-teaser h2 a {
   display: block;
@@ -451,7 +426,7 @@ article.view-mode-teaser h2 a {
 }
 
 .dark article.view-mode-teaser h2 a:hover {
-  color: #7dd3fc; /* لون النص عند hover في الوضع الداكن */
+  color: #7dd3fc; /* Text color on hover in dark mode */
 }
 article.view-mode-teaser h2 a:hover {
   color: #4e5f83 ;
@@ -465,7 +440,7 @@ article.view-mode-teaser h2 a:hover {
   }
 }
 
-/* ---------- 8.3 التاريخ واسم الكاتب (Submitted) ---------- */
+/* ---------- 8.3 Date and Author Name (Submitted) ---------- */
 article.view-mode-teaser footer .submitted,
 article.view-mode-teaser p.submitted,
 article.view-mode-teaser .submitted {
@@ -477,7 +452,7 @@ article.view-mode-teaser .submitted {
   color: #94a3b8;
 }
 
-/* ---------- 8.4 نص الموضوع (Body) ---------- */
+/* ---------- 8.4 Body Text ---------- */
 article.view-mode-teaser .field-name-body {
   margin-bottom: 1rem;
   display: block;
@@ -487,7 +462,7 @@ article.view-mode-teaser .field-name-body {
 }
 
 .dark  article.view-mode-teaser .field-name-body .field-item p {
-  color: #d1d5db; /* لون النص في الوضع الداكن */
+  color: #d1d5db; /* Text color in dark mode */
 }
 article.view-mode-teaser .field-name-body .field-item p {
   margin: 0 0 0.75rem 0;
@@ -509,7 +484,7 @@ article.view-mode-teaser .field-name-body a:hover {
   color: #1e40af;
 }
 
-/* ---------- 8.5 قائمة الروابط (Read more, Add new comment) ---------- */
+/* ---------- 8.5 Links List (Read more, Add new comment) ---------- */
 article.view-mode-teaser ul.links.inline {
   margin: 0.5rem 0 0.25rem 0;
   padding: 0;
@@ -544,7 +519,7 @@ article.view-mode-teaser ul.links.inline a:hover {
   color: #164e63;
 }
 
-/* ---------- 8.6 صورة الـ Teaser (إن وجدت) ---------- */
+/* ---------- 8.6 Teaser Image (if any) ---------- */
 article.view-mode-teaser .field-name-field-image,
 article.view-mode-teaser .field-name-field-thumbnail {
   margin-bottom: 1rem;
@@ -558,7 +533,7 @@ article.view-mode-teaser .field-name-field-thumbnail img {
   display: block;
 }
 
-/* ---------- 8.7 تجاوزات Core محتملة ---------- */
+/* ---------- 8.7 Potential Core Overrides ---------- */
 article.view-mode-teaser.node {
   float: none;
   width: auto;
@@ -570,18 +545,10 @@ article.view-mode-teaser {
 }
 
 /* ============================================================
-   9. الفوتر (Footer)
+   9. Footer
    ============================================================ */
-.dark footer.l-footer {
-  background-color: #0f172a; /* لون الخلفية في الوضع الداكن */
-  color: #cbd5e1; /* لون النص في الوضع الداكن */
-  border-top: 1px solid #1e293b; /* لون الحدود في الوضع الداكن */
-}
+
 footer.l-footer {
-  background-color: #083c56;
-  color: #94a3b8;
-  padding: 2.5rem 1rem;
-  border-top: 1px solid #0e5275;
   position: relative;
   margin-top: 2rem;
 }
@@ -593,27 +560,7 @@ footer.l-footer {
   }
 }
 
-footer.l-footer .l-footer-inner {
-  width: 100%;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  footer.l-footer .l-footer-inner {
-    flex-direction: row;
-  }
-}
-
-/* الشعار */
+/* Logo */
 .drop-lounging {
   display: inline-block;
   width: 75px;
@@ -667,10 +614,10 @@ footer.l-footer .block-system-powered-by a:hover {
 }
 
 /* ============================================================
-   10. عنوان الصفحة والتبويبات
+   10. Page Title and Tabs
    ============================================================ */
 .dark .page-title {
-  color: #f3f4f6; /* لون النص في الوضع الداكن */
+  color: #f3f4f6; /* Text color in dark mode */
 }
 .page-title {
   margin: 1.5rem;
@@ -716,7 +663,7 @@ footer.l-footer .block-system-powered-by a:hover {
 }
 
 /* ============================================================
-   11. محتوى العقدة الكامل (Node Full)
+   11. Full Node Content
    ============================================================ */
 
 .node .content {
@@ -741,7 +688,7 @@ footer.l-footer .block-system-powered-by a:hover {
 }
 
 .dark .field-name-body .field-item p {
-  color: #d1d5db; /* لون النص في الوضع الداكن */
+  color: #d1d5db; /* Text color in dark mode */
 }
 .field-name-body .field-item p {
   margin-bottom: 1rem;
@@ -799,14 +746,14 @@ footer.l-footer .block-system-powered-by a:hover {
 }
 
 .dark article.view-mode-full footer {
-  color: #cbd5e1; /* لون النص في الوضع الداكن */
+  color: #cbd5e1; /* Text color in dark mode */
 }
 article.view-mode-full footer {
   margin-bottom: 1.5rem;
 }
 
 /* ============================================================
-   12. التعليقات (Comments)
+   12. Comments
    ============================================================ */
 
 #comment-form input[type="submit"],
@@ -847,7 +794,7 @@ article.view-mode-full footer {
 }
 
 /* ============================================================
-   14. طباعة (Print)
+   14. Print
    ============================================================ */
 
 @media print {

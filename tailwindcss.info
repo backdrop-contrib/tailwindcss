@@ -5,10 +5,13 @@ backdrop = 1.x
 version = BACKDROP_VERSION
 
 ; Add theme CSS files
-stylesheets[all][] = css/tailwindcss.css
-stylesheets[all][] = css/style.css
+stylesheets[all][] = css/tailwindcss.min.css
+stylesheets[all][] = css/style.min.css
 
 scripts[] = js/script.js
 
-settings[tailwindcss_enabled] = true
-settings[toggle_dark_mode] = 0
+; مصفوفة إعدادات الثيم الافتراضية
+settings[site_background] = ""
+settings[toggle_dark_mode] = 1
+settings[toggle_breadcrumb] = 1
+settings[hide_home_breadcrumb] = 0

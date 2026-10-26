@@ -28,7 +28,7 @@
   </div>
 
 <?php if ($content['header']): ?>
-    <header class="l-header bg-gradient-to-b from-sky-100 via-slate-100 to-white text-gray-800 dark:bg-gray-900 dark:bg-none dark:text-gray-100 shadow-sm border-b border-gray-200 text-base" role="banner" aria-label="<?php print t('Site header'); ?>">
+    <header class="l-header <?php print $header_bg; ?> shadow-sm border-b border-gray-200 text-base mb-6" role="banner" aria-label="<?php print t('Site header'); ?>">
       <div class="l-header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         <?php print $content['header']; ?>
       </div>
@@ -81,7 +81,7 @@
   </div><!-- /.l-wrapper -->
 
   <?php if ($content['footer']): ?>
-    <footer class="l-footer">
+    <footer class="l-footer <?php print $footer_bg; ?>">
       <div class="l-footer-inner container container-fluid">
         <?php print $content['footer']; ?>
       </div><!-- /.container -->

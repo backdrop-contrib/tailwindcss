@@ -5,7 +5,8 @@ module.exports = {
     "./**/*.tpl.php",
     "./*.info",
     "./template.php",
-    "./js/**/*.js"
+    "./js/**/*.js",
+    "./src/safelist.txt",
   ],
   theme: {
     extend: {},

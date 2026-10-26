@@ -29,8 +29,8 @@
   </div>
 
   <?php if ($content['header']): ?>
-    <header class="l-header" role="banner" aria-label="<?php print t('Site header'); ?>">
-      <div class="l-header-inner container container-fluid">
+    <header class="l-header <?php print $header_bg; ?>" role="banner" aria-label="<?php print t('Site header'); ?>">
+      <div class="l-header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         <?php print $content['header']; ?>
       </div>
     </header>
@@ -87,7 +87,7 @@
   </div><!-- /.l-wrapper -->
 
   <?php if ($content['footer']): ?>
-    <footer class="l-footer">
+    <footer class="l-footer py-10 px-4 <?php print $footer_bg; ?>">
       <div class="l-footer-inner container container-fluid">
         <?php print $content['footer']; ?>
       </div>
