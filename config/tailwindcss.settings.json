@@ -1,0 +1,12 @@
+{
+    "_config_name": "tailwindcss.settings",
+    "toggle_breadcrumb": 1,
+    "hide_home_breadcrumb": 1,
+    "hide_breadcrumb_front": 0,
+    "tailwindcss_tabs__active_tab": "edit-background-options",
+    "site_background": "bg-neutral-100 text-lg dark:bg-gray-900 ",
+    "toggle_dark_mode": 1,
+    "header_background": "bg-gradient-to-b from-sky-100 via-slate-100 to-white text-gray-800 dark:bg-gray-900 dark:bg-none dark:text-gray-100",
+    "content_background": "",
+    "footer_background": "bg-[#083c56] text-slate-400 border-t border-[#0e5275] dark:bg-slate-900 dark:text-slate-300 dark:border-t dark:border-slate-800"
+}
