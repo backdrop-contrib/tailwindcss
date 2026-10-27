@@ -46,7 +46,7 @@
     <?php print backdrop_get_css(); ?>
     <?php print backdrop_get_js(); ?>
   </head>
-  <body class="<?php print implode(' ', $classes); ?> dark:bg-gray-900"<?php print backdrop_attributes($body_attributes); ?>>
+  <body class="<?php print implode(' ', $classes); ?> "<?php print backdrop_attributes($body_attributes); ?>>
     <?php print $page; ?>
     <?php print $page_bottom; ?>
     <?php print backdrop_get_js('footer'); ?>

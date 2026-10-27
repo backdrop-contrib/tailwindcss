@@ -10,7 +10,7 @@ stylesheets[all][] = css/style.min.css
 
 scripts[] = js/script.js
 
-; مصفوفة إعدادات الثيم الافتراضية
+
 settings[site_background] = ""
 settings[toggle_dark_mode] = 1
 settings[toggle_breadcrumb] = 1
