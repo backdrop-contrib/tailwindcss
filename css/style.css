@@ -811,3 +811,6 @@ article.view-mode-full footer {
     background: #fff;
   }
 }
+#admin-bar svg.icon {
+	display: inherit;
+}

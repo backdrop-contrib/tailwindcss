@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.min.css --minify",
-    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.min.css --watch"
+    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwindcss.css --watch"
   },
   "keywords": [
     "backdrop-cms",
