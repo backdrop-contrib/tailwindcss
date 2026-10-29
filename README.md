@@ -1,20 +1,20 @@
 Tailwind CSS Theme
 ==================
 
-Tailwind CSS is a clean, modern, and flexible base theme for Backdrop CMS built 
-with Tailwind CSS v3 and based on the default Basis theme.
+Tailwind CSS is a clean, modern, and flexible **standalone** theme for Backdrop CMS built with Tailwind CSS v3.
 
 <img width="1349" height="1738" alt="screenshot" src="https://github.com/user-attachments/assets/523f4f35-8537-442c-9855-a6fb24d95959" />
 
 Features
 --------
 
-- **Based on Basis:** Inherits all the robust layout and template structures from the default Basis theme.
+- **Standalone Theme:** No dependency on Basis or any other base theme. Works as a root theme.
 - **Tailwind CSS:** Utilizes the power of utility-first CSS for rapid styling.
 - **Sticky Footer:** Automatically pushes the footer to the bottom of the page on all screen sizes.
 - **Ready to Use:** No need to configure complex Layouts or Blocks. Designed to work out-of-the-box.
 - **RTL Support:** Fully tested and optimized for Right-to-Left languages.
 - **Customizable:** Includes theme settings to allow users to customize colors and options without touching code.
+- **Sub-theme Friendly:** Can be used as a base theme for building sub-themes.
 
 Status
 ------
@@ -54,7 +54,6 @@ Credits
 -------
 
 - Built for [Backdrop CMS](https://backdropcms.org/).
-- Based on the default Basis theme.
 
 License
 -------
