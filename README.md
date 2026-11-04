@@ -37,12 +37,12 @@ Installation
 Documentation
 -------------
 
-Additional documentation is located in [the Wiki](https://github.com/shabib-m/tailwindcss/wiki).
+Additional documentation is located in [the Wiki](https://github.com/backdrop-contrib/tailwindcss/wiki).
 
 Issues
 ------
 
-Bugs and feature requests should be reported in [the Issue Queue](https://github.com/shabib-m/tailwindcss/issues).
+Bugs and feature requests should be reported in [the Issue Queue](https://github.com/backdrop-contrib/tailwindcss/issues).
 
 Current Maintainers
 -------------------
