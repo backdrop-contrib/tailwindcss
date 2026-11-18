@@ -16,12 +16,6 @@ Features
 - **Customizable:** Includes theme settings to allow users to customize colors and options without touching code.
 - **Sub-theme Friendly:** Can be used as a base theme for building sub-themes.
 
-Status
-------
-
-🚧 **Developer Version (Dev)**
-This theme is currently in active development. Feedback, bug reports, and contributions are welcome to help improve it before a stable release.
-
 Requirements
 ------------
 
