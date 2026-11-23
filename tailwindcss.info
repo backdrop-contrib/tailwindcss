@@ -5,8 +5,8 @@ backdrop = 1.x
 version = BACKDROP_VERSION
 
 ; Add theme CSS files
-stylesheets[all][] = css/tailwindcss.min.css
-stylesheets[all][] = css/style.min.css
+stylesheets[all][] = css/tailwindcss.css
+stylesheets[all][] = css/style.css
 
 scripts[] = js/script.js
 

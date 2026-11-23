@@ -1,3 +1,514 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ========================================
+   Backdrop CMS - Form variables
+======================================== */
+
+:root {
+  --form-input-width: 100%;
+  --form-input-max-width: 42rem;
+}
+
+/* ========================================
+   Form elements
+======================================== */
+
+.form-item {
+  @apply mb-5;
+}
+
+/* Form field labels */
+.form-item > label:not(.option) {
+  @apply mb-2 block text-base font-semibold text-slate-800;
+}
+
+/* Text inputs, select and textarea */
+.form-text,
+.form-email,
+.form-password,
+.form-number,
+.form-tel,
+.form-url,
+.form-search,
+.form-select,
+.form-textarea {
+  @apply rounded-md border border-slate-300
+         bg-white px-3 py-2 text-slate-900
+         shadow-sm transition-colors;
+
+  width: var(--form-input-width);
+  max-width: var(--form-input-max-width);
+  box-sizing: border-box;
+}
+
+/* Focus states */
+.form-text:focus,
+.form-email:focus,
+.form-password:focus,
+.form-number:focus,
+.form-tel:focus,
+.form-url:focus,
+.form-search:focus,
+.form-select:focus,
+.form-textarea:focus {
+  @apply border-sky-500 outline-none
+         ring-2 ring-sky-100;
+}
+
+/* Textarea wrapper */
+.form-textarea-wrapper {
+  width: var(--form-input-width);
+  max-width: var(--form-input-max-width);
+}
+
+.form-textarea {
+  @apply min-h-32;
+}
+
+/* Required fields */
+.form-required {
+  @apply text-red-500 no-underline;
+}
+
+/* Form descriptions */
+.form-item .description {
+  @apply mt-1 text-sm leading-relaxed text-slate-500;
+}
+
+/* Disabled fields */
+.form-text:disabled,
+.form-email:disabled,
+.form-password:disabled,
+.form-number:disabled,
+.form-tel:disabled,
+.form-url:disabled,
+.form-search:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+  @apply cursor-not-allowed bg-slate-100
+         text-slate-500 opacity-70;
+}
+
+/* Error fields */
+.form-item input.error:not([type="checkbox"]):not([type="radio"]),
+.form-item select.error,
+.form-item textarea.error {
+  @apply border-red-500 focus:border-red-500
+         focus:ring-red-100;
+}
+
+/* ========================================
+   Checkbox and Radio
+======================================== */
+
+.form-type-checkbox,
+.form-type-radio {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.form-type-checkbox > .description,
+.form-type-radio > .description {
+  @apply w-full;
+}
+
+.form-checkbox,
+.form-radio {
+  @apply h-4 w-4 accent-sky-500;
+}
+
+.form-type-checkbox label.option,
+.form-type-radio label.option {
+  @apply m-0 font-normal;
+}
+
+/* ========================================
+   Fieldsets
+======================================== */
+
+fieldset legend {
+  @apply mb-3 font-medium text-slate-700;
+}
+
+/* ========================================
+   Form actions
+======================================== */
+
+.form-actions {
+  @apply mt-6 flex flex-wrap items-center gap-3;
+}
+
+/* Primary submit buttons */
+.form-actions .form-submit {
+  @apply inline-flex cursor-pointer items-center
+         justify-center rounded-md bg-sky-500
+         px-5 py-2.5 text-base font-medium
+         text-white transition-colors
+         hover:bg-sky-600
+         focus-visible:outline-none
+         focus-visible:ring-2
+         focus-visible:ring-sky-300
+         focus-visible:ring-offset-2;
+}
+
+/* Cancel / secondary action */
+.form-actions .form-cancel,
+.form-actions .form-delete {
+  @apply inline-flex items-center justify-center
+         rounded-md border border-slate-300
+         bg-white px-5 py-2.5
+         text-base font-medium text-slate-700
+         no-underline shadow-sm transition-colors
+         hover:border-slate-400
+         hover:bg-slate-50
+         hover:text-slate-900
+         hover:no-underline
+         focus-visible:outline-none
+         focus-visible:ring-2
+         focus-visible:ring-sky-400
+         focus-visible:ring-offset-2;
+}
+/* Date and time fields on mobile */
+@media (max-width: 47.99em) {
+  #edit-date.container-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  #edit-date.container-inline > .form-item {
+    display: block;
+    flex: 0 1 auto;
+    min-width: 0;
+    margin: 0;
+  }
+
+  #edit-date.container-inline input {
+    max-width: 100%;
+  }
+}
+/* ========================================
+   Simplified user pages
+======================================== */
+
+.user-simplified-page-wrapper {
+  @apply rounded-xl border border-slate-200;
+}
+
+
+/* ========================================
+   Backdrop CMS - Collapsible fieldsets
+======================================== */
+
+fieldset.filter-wrapper {
+  @apply mt-3 border-0 bg-transparent p-0;
+  width: 97%;
+  min-width: 0;
+}
+
+fieldset.filter-wrapper > legend {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset.filter-wrapper .fieldset-legend {
+  @apply flex items-center justify-between gap-3;
+}
+
+fieldset.filter-wrapper .fieldset-title {
+  @apply text-sm font-medium text-sky-700
+         no-underline hover:underline;
+}
+
+fieldset.filter-wrapper .summary {
+  @apply text-sm font-normal text-slate-500;
+}
+
+fieldset.filter-wrapper > .fieldset-wrapper {
+  @apply mt-2 rounded-md border border-slate-200
+         bg-white p-4;
+}
+
+
+/* ========================================
+   Backdrop CMS - File upload
+======================================== */
+
+.image-widget-data {
+  @apply flex flex-wrap items-center gap-3;
+}
+
+/* Native file input */
+.form-type-managed-file .form-file {
+  @apply block w-auto max-w-full
+         rounded-md border border-slate-300
+         bg-white p-2 text-sm text-slate-600
+         file:me-3 file:cursor-pointer
+         file:rounded-md file:border-0
+         file:bg-slate-100 file:px-4 file:py-2
+         file:text-sm file:font-medium
+         file:text-slate-700
+         file:hover:bg-slate-200;
+}
+
+/* Existing file selection */
+.file-browse-text {
+  @apply inline-flex items-center gap-2
+         text-lg  text-slate-500;
+}
+
+.file-browse-button {
+  @apply cursor-pointer rounded-md
+         border border-slate-300 bg-white
+         px-4 py-4 text-sm font-medium
+         text-slate-700 transition-colors
+         hover:bg-slate-50
+         focus-visible:outline-none
+         focus-visible:ring-2
+         focus-visible:ring-sky-400;
+}
+.form-item, .filter-wrapper,
+fieldset.filter-wrapper {
+  @apply m-4 rounded-md border border-slate-300
+         bg-white p-4;
+}
+
+
+/* ========================================
+   Backdrop CMS - Multiple value fields
+======================================== */
+
+.field-multiple-table {
+  @apply w-full max-w-full border-collapse
+         bg-white text-sm;
+}
+
+/* Table headers */
+.field-multiple-table thead th {
+  @apply border-b border-slate-200
+         bg-white px-3 py-3
+         font-semibold text-slate-700 text-center;
+}
+
+/* Keep table header cells in table layout */
+.field-multiple-table th.field-label {
+  display: table-cell;
+  margin-bottom: 0;
+}
+
+/* Table cells */
+.field-multiple-table tbody td {
+  @apply border-b border-slate-200
+         bg-slate-50 p-3 align-middle;
+}
+
+/* Textarea inside multiple-value table */
+.field-multiple-table .form-textarea-wrapper {
+  @apply w-full max-w-full;
+}
+
+/* Add another button */
+.field-multiple-table .field-add-more-submit {
+  @apply inline-flex cursor-pointer items-center
+         rounded-md border border-sky-200
+         bg-sky-50 px-4 py-2
+         text-sm font-medium text-sky-700
+         transition-colors
+         hover:border-sky-300 hover:bg-sky-100
+         focus-visible:outline-none
+         focus-visible:ring-2
+         focus-visible:ring-sky-300;
+}
+
+
+/* Pager */
+.item-list ul.pager {
+  @apply flex flex-wrap items-center justify-center gap-2 my-6 p-0;
+  list-style: none;
+}
+
+.item-list ul.pager > li {
+  @apply m-0 p-0;
+  list-style: none;
+}
+
+.item-list ul.pager > li > a,
+.item-list ul.pager > li.pager-current {
+  @apply inline-flex min-w-9 items-center justify-center
+         rounded-md border border-slate-200 bg-white
+         px-3 py-2 text-sm font-medium text-slate-700;
+}
+
+.item-list ul.pager > li > a:hover {
+  @apply border-sky-300 bg-sky-50 text-sky-700;
+}
+
+.item-list ul.pager > li > a:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-sky-500;
+}
+
+.item-list ul.pager > li.pager-current {
+  @apply border-sky-700 bg-sky-700 text-white;
+}
+
+/* Views tables */
+table.views-table {
+  @apply w-full border-collapse text-sm text-slate-700;
+}
+
+table.views-table thead {
+  @apply bg-slate-100;
+}
+
+table.views-table thead th {
+  @apply border-b border-slate-200 px-4 py-3
+         text-start font-semibold text-slate-800;
+}
+
+table.views-table tbody td {
+  @apply border-b border-slate-200 px-4 py-3 align-top;
+}
+
+table.views-table tbody tr:hover {
+  @apply bg-slate-50;
+}
+
+table.views-table td img {
+  @apply h-auto max-w-full rounded-md;
+}
+
+/* Vertical tabs */
+.vertical-tabs {
+  @apply overflow-hidden rounded-lg border border-slate-200 bg-white;
+}
+
+.vertical-tabs-list {
+  @apply bg-slate-50;
+}
+
+.vertical-tabs-list .vertical-tab-item {
+  @apply border-b border-slate-200;
+}
+
+.vertical-tabs-list .vertical-tab-link {
+  @apply block px-4 py-3 text-slate-700 no-underline;
+}
+
+.vertical-tabs-list .vertical-tab-link:hover {
+  @apply bg-slate-100 text-sky-700;
+}
+
+.vertical-tabs-list .vertical-tab-selected {
+  @apply bg-white;
+  border-inline-start: 3px solid #0369a1;
+}
+
+.vertical-tabs-list .vertical-tab-selected .vertical-tab-link {
+  @apply text-sky-700;
+}
+
+.vertical-tabs-list .vertical-tab-link strong {
+  @apply block font-semibold;
+}
+
+.vertical-tabs-list .vertical-tab-link .summary {
+  @apply mt-1 block text-sm font-normal text-slate-500;
+}
+
+.container-inline {
+    clear: both;
+    margin: inherit;
+}
+
+.node-form .form-actions #edit-delete {
+  @apply border-red-200 bg-red-50 text-red-700
+         hover:border-red-300 hover:bg-red-100;
+}
+
+/* Status messages */
+.l-messages .messages {
+  @apply relative my-2 rounded-md border
+         py-4 text-sm leading-6;
+
+  padding-inline-start: 5rem;
+  padding-inline-end: 2.5rem;
+}
+
+/* Success */
+.l-messages .messages.status {
+  @apply border-green-200 bg-green-50 text-green-800;
+}
+.l-messages .messages.status::before {
+  @apply bg-green-600;
+}
+
+/* Warning */
+.l-messages .messages.warning {
+  @apply border-amber-200 bg-amber-50 text-amber-800;
+}
+.l-messages .messages.warning::before {
+  @apply bg-amber-500;
+}
+
+/* Error */
+.l-messages .messages.error {
+  @apply border-red-200 bg-red-50 text-red-800;
+}
+.l-messages .messages.error::before {
+  @apply bg-red-600;
+}
+
+/* Dismiss button */
+.l-messages .messages .dismiss {
+  @apply absolute end-3 top-3 rounded p-1
+         opacity-60 transition-opacity hover:opacity-100;
+}
+
+/* Main menu links */
+.js .l-header .menu-dropdown > li > a,
+.js .l-header .menu-dropdown > li > a:hover,
+.js .l-header .menu-dropdown > li > a:focus,
+.js .l-header .menu-dropdown > li > a:active {
+  padding: 0.575rem 0.875rem 0.775rem;
+  line-height: normal;
+  font-weight: bold;
+}
+
+/* Reserve space for submenu arrows */
+.js .l-header .menu-dropdown > li > a.has-submenu {
+  padding-inline-end: 2.5rem;
+}
+
+
+/* ========================================
+   Backdrop CMS - Dropdown submenu
+======================================== */
+
+@media (min-width: 48em) {
+
+  /* Remove submenu vertical gaps */
+  .js .l-header .menu-dropdown > li > ul {
+    @apply overflow-hidden rounded-md border
+           border-slate-200 bg-white p-0 shadow-lg;
+  }
+
+  /* Parent link with submenu */
+  .js .l-header .menu-dropdown > li > a.has-submenu {
+    padding-inline-end: 2rem;
+  }
+
+  /* Dropdown arrow */
+  .js .l-header .menu-dropdown > li > a.has-submenu > .sub-arrow {
+    right: 0.75rem;
+    left: auto;
+  }
+
+  /* Preserve the current RTL arrow behavior */
+  [dir="rtl"] .js .l-header .menu-dropdown > li > a.has-submenu > .sub-arrow {
+    display: none;
+  }
+}
